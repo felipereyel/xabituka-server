@@ -2,6 +2,7 @@ package com.example.Xabituka.controller;
 
 import com.example.Xabituka.model.Users;
 import com.example.Xabituka.repository.UsersRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,13 @@ public class UsersController {
     @GetMapping
     public List findAll() {
         return repository.findAll();
+    }
+
+    @GetMapping(path = {"/{id}"})
+    public ResponseEntity findById(@PathVariable long id) {
+        return repository.findById(id)
+                .map(record -> ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
