@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +18,7 @@ public class Contests {
 
     private String name;
     private boolean open;
+
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
+    private Set<ContestsQuestions> contestsQuestions;
 }
