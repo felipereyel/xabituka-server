@@ -20,5 +20,6 @@ public class Users {
 
     private String nickname;
     private String userType;
+    private String password;
 
 }

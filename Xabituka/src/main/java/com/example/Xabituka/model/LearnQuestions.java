@@ -20,7 +20,6 @@ public class LearnQuestions {
     private boolean answer;
     private int difficulty;
 
-    @ManyToOne
-    @JoinColumn
-    private Topics topic;
+    @Column(name = "topic_id")
+    private Long topicId;
 }

@@ -15,10 +15,5 @@ public class Topics {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<LearnQuestions> learnQuestions;
-
     private String name;
 }

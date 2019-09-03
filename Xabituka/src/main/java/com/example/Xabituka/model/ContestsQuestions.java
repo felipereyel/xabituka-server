@@ -19,7 +19,6 @@ public class ContestsQuestions {
     private String question;
     private Boolean answer;
 
-    @ManyToOne
-    @JoinColumn
-    private Contests contest;
+    @Column(name = "contest_id")
+    private Long contestId;
 }

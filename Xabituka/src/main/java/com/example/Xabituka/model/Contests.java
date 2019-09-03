@@ -19,6 +19,6 @@ public class Contests {
     private String name;
     private boolean open;
 
-    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
-    private Set<ContestsQuestions> contestsQuestions;
+    @Column(name = "author_id")
+    private Long authorId;
 }
