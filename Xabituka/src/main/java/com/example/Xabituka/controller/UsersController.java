@@ -2,10 +2,13 @@ package com.example.Xabituka.controller;
 
 import com.example.Xabituka.model.Users;
 import com.example.Xabituka.repository.UsersRepository;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping({"/users"})
@@ -30,7 +33,30 @@ public class UsersController {
     }
 
     @PostMapping
-    public Users create(@RequestBody Users users){
+    public Users create(@RequestBody Users users) {
+
         return repository.save(users);
     }
+
+    @GetMapping({"/login"})
+    public LinkedHashMap teste(@RequestParam String nickname, @RequestParam String password) {
+        Map res = new LinkedHashMap();
+        try {
+            Users user = repository.findByNickname(nickname);
+
+            if (user.getPassword().equals(password)) {
+                res.put("auth", true);
+                res.put("user_type", user.getUserType());
+            } else {
+                res.put("auth", false);
+            }
+        }
+        catch(Exception e) {
+            res.put("auth", false);
+        }
+
+        return (LinkedHashMap) res;
+
+    }
+
 }

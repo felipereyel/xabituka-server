@@ -17,7 +17,6 @@ public class Contests {
     private Long id;
 
     private String name;
-    private boolean open;
 
     @Column(name = "author_id")
     private Long authorId;
