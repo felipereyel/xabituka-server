@@ -47,7 +47,8 @@ public class UsersController {
             if (user.getPassword().equals(password)) {
                 res.put("auth", true);
                 res.put("user_type", user.getUserType());
-            } else {
+            }
+            else {
                 res.put("auth", false);
             }
         }
@@ -56,7 +57,5 @@ public class UsersController {
         }
 
         return (LinkedHashMap) res;
-
     }
-
 }
