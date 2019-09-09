@@ -16,4 +16,6 @@ public class Topics {
     private Long id;
 
     private String name;
+    @Column(name = "subject_id")
+    private Long subjectId;
 }

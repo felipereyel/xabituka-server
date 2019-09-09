@@ -24,4 +24,9 @@ public class TopicsController {
     public Topics create(@RequestBody Topics topic) {
         return repository.save(topic);
     }
+    
+    @GetMapping({"/{subjectId}"})
+    public List findBySubjectId(@PathVariable Long subjectId) {
+        return repository.findBySubjectId(subjectId);
+    }
 }
