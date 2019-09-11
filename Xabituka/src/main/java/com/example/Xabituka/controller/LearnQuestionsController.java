@@ -22,13 +22,13 @@ public class LearnQuestionsController {
         return repository.findAll();
     }
 
-    @GetMapping(path = {"/{id}"})
+    @GetMapping({"/{id}"})
     public ResponseEntity findById(@PathVariable long id) {
         return repository.findById(id)
                 .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
     }
-
+ 
     @PostMapping
     public LearnQuestions create(@RequestBody LearnQuestions learnQuestion){
         return repository.save(learnQuestion);

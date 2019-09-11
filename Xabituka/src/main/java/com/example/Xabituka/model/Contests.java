@@ -20,4 +20,6 @@ public class Contests {
 
     @Column(name = "author_id")
     private Long authorId;
+    
+    private Long pin;
 }
