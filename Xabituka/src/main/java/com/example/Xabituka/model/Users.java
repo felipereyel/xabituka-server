@@ -20,6 +20,7 @@ public class Users {
     @Column(name = "user_type")
     private String userType;
 
+    @Column(name = "psswd")
     private String password;
 
 }
