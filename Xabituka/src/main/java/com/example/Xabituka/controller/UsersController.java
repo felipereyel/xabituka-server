@@ -44,7 +44,7 @@ public class UsersController {
         try {
             Users user = repository.findByNickname(nickname);
 
-            if (user.getPassword().equals(password)) {
+            if (user.getPw().equals(password)) {
                 res.put("auth", true);
                 res.put("user_type", user.getUserType());
             }
