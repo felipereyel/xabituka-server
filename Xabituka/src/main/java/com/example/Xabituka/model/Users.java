@@ -21,6 +21,6 @@ public class Users {
     private String userType;
 
     @Column(name = "psswd")
-    private String password;
+    private String pw;
 
 }
