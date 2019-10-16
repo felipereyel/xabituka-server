@@ -19,7 +19,10 @@ public class Users {
     private Long id;
 
     private String nickname;
+
+    @Column(name = "user_type")
     private String userType;
+    
     private String password;
 
 }
