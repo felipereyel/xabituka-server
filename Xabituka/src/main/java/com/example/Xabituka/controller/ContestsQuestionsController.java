@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 
 @RestController
-@RequestMapping({"/contestsquestions"})
+@RequestMapping({"/contests/questions"})
 public class ContestsQuestionsController {
     
     private ContestsQuestionsRepository repository;

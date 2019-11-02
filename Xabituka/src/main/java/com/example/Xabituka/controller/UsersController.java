@@ -33,9 +33,8 @@ public class UsersController {
     }
 
     @PostMapping
-    public Users create(@RequestBody Users users) {
-
-        return repository.save(users);
+    public Users create(@RequestBody Users user) {
+        return repository.save(user);
     }
 
     @GetMapping({"/login"})
