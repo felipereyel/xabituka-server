@@ -1,36 +1,59 @@
 package com.example.Xabituka.controller;
 
 import com.example.Xabituka.model.LearnQuestions;
+import com.example.Xabituka.model.Topics;
 import com.example.Xabituka.repository.LearnQuestionsRepository;
+import com.example.Xabituka.repository.TopicsRepository;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping({"/learn/questions"})
 public class LearnQuestionsController {
 
-    private LearnQuestionsRepository repository;
+    private LearnQuestionsRepository learnQuestionsRepository;
+    private TopicsRepository topicsRepository;
 
-    public LearnQuestionsController(LearnQuestionsRepository repository) {
-        this.repository = repository;
+    public LearnQuestionsController(LearnQuestionsRepository learnQuestionsRepository, TopicsRepository topicsRepository) {
+        this.learnQuestionsRepository = learnQuestionsRepository;
+        this.topicsRepository = topicsRepository;
     }
 
     @GetMapping
     public List findAll() {
-        return repository.findAll();
+        return learnQuestionsRepository.findAll();
     }
 
-    @GetMapping({"/{id}"})
-    public ResponseEntity findById(@PathVariable long id) {
-        return repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+//    @GetMapping({"/{id}"})
+//    public ResponseEntity findById(@PathVariable long id) {
+//        return repository.findById(id)
+//                .map(record -> ResponseEntity.ok().body(record))
+//                .orElse(ResponseEntity.notFound().build());
+//    }
+    
+    @GetMapping({"/{subjectId}"})
+    public List <LearnQuestions> findBySubjectId(@PathVariable long subjectId){
+        List <Long> topicIds = topicsRepository.findBySubjectId(subjectId)
+                .stream()
+                .map( it -> it.getId())
+                .collect(Collectors.toList());
+        
+        List <LearnQuestions> questions = learnQuestionsRepository.findAll()
+                .stream()
+                .filter( it -> topicIds.contains(it.getTopicId()))
+                .collect(Collectors.toList());
+        
+        return questions;
+             
     }
- 
+    
     @PostMapping
     public LearnQuestions create(@RequestBody LearnQuestions learnQuestion){
-        return repository.save(learnQuestion);
+        return learnQuestionsRepository.save(learnQuestion);
     }
 }
