@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/learnquestions"})
+@RequestMapping({"/learn/questions"})
 public class LearnQuestionsController {
 
     private LearnQuestionsRepository repository;
