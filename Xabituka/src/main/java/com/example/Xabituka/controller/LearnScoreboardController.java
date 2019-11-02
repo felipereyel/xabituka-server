@@ -2,12 +2,12 @@ package com.example.Xabituka.controller;
 
 import com.example.Xabituka.model.LearnScoreboard;
 import com.example.Xabituka.repository.LearnScoreboardRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping({"/learn/scoreboard"})
 public class LearnScoreboardController {
 
     private LearnScoreboardRepository repository;
