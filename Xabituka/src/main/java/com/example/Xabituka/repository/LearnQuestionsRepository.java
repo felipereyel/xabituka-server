@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LearnQuestionsRepository extends JpaRepository<LearnQuestions, Long> {
-    List <LearnQuestions> findByTopicId(Long topicId); 
+    List <LearnQuestions> findByTopicId(Long topicId);
 }

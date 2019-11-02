@@ -1,7 +1,10 @@
 package com.example.Xabituka.controller;
 
+import com.example.Xabituka.model.LearnAnswers;
 import com.example.Xabituka.model.LearnQuestions;
+import static com.example.Xabituka.model.LearnQuestions.applyHeuristic;
 import com.example.Xabituka.model.Topics;
+import com.example.Xabituka.repository.LearnAnswersRepository;
 import com.example.Xabituka.repository.LearnQuestionsRepository;
 import com.example.Xabituka.repository.TopicsRepository;
 import java.util.Collection;
@@ -18,6 +21,7 @@ public class LearnQuestionsController {
 
     private LearnQuestionsRepository learnQuestionsRepository;
     private TopicsRepository topicsRepository;
+    private LearnAnswersRepository learnAnswersRepository;
 
     public LearnQuestionsController(LearnQuestionsRepository learnQuestionsRepository, TopicsRepository topicsRepository) {
         this.learnQuestionsRepository = learnQuestionsRepository;
@@ -36,8 +40,9 @@ public class LearnQuestionsController {
 //                .orElse(ResponseEntity.notFound().build());
 //    }
     
-    @GetMapping({"/{subjectId}"})
-    public List <LearnQuestions> findBySubjectId(@PathVariable long subjectId){
+    @GetMapping({"/{subjectId}/{userId}"})
+    public LearnQuestions findBySubjectId(@PathVariable long subjectId,
+                                                 @PathVariable long userId){
         List <Long> topicIds = topicsRepository.findBySubjectId(subjectId)
                 .stream()
                 .map( it -> it.getId())
@@ -48,8 +53,19 @@ public class LearnQuestionsController {
                 .filter( it -> topicIds.contains(it.getTopicId()))
                 .collect(Collectors.toList());
         
-        return questions;
-             
+        List <Long> learnQuestionIds = questions
+                .stream()
+                .map( it -> it.getId() )
+                .collect(Collectors.toList());
+        
+        List <LearnAnswers> answers = learnAnswersRepository.findAll()
+                .stream()
+                .filter( it -> it.getUserId() == userId)
+                .filter( it -> learnQuestionIds.contains(it.getLearnQuestionsId()))
+                .collect(Collectors.toList());
+        
+        
+        return applyHeuristic(questions, answers);
     }
     
     @PostMapping
