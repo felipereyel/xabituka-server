@@ -15,11 +15,10 @@ public class Contests {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     @Column(name = "author_id")
     private Long authorId;
-    
+
+    private Boolean isPrivate;
     private Long pin;
 }

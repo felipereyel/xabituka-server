@@ -15,11 +15,9 @@ public class LearnQuestions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String question;
-    private boolean answer;
-    private int difficulty;
-
+    private Boolean answer;
+    private Long difficulty;
     @Column(name = "topic_id")
     private Long topicId;
 }

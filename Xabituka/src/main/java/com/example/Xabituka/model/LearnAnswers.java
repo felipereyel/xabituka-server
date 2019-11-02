@@ -15,8 +15,7 @@ public class LearnAnswers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private boolean gotItRight;
     private Long userId;
     private Long learnQuestionsId;
+    private boolean gotItRight;
 }

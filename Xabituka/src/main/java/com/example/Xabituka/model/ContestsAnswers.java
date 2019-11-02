@@ -15,8 +15,7 @@ public class ContestsAnswers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private boolean gotItRight;
     private Long userId;
+    private boolean gotItRight;
     private Long contestId;
 }

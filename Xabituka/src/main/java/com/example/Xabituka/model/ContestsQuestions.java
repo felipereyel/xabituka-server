@@ -15,10 +15,8 @@ public class ContestsQuestions {
     @Id
     @GeneratedValue
     private Long id;
-
     private String question;
     private Boolean answer;
-
     @Column(name = "contest_id")
     private Long contestId;
 }

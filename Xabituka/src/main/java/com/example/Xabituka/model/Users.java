@@ -14,13 +14,8 @@ public class Users {
     @Id // Indica que a variável é um ID no banco
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Escolhe a estratégia para geração do ID
     private Long id;
-
     private String nickname;
-
-    @Column(name = "user_type")
     private String userType;
-
     @Column(name = "psswd")
     private String pw;
-
 }
