@@ -23,9 +23,10 @@ public class LearnQuestionsController {
     private TopicsRepository topicsRepository;
     private LearnAnswersRepository learnAnswersRepository;
 
-    public LearnQuestionsController(LearnQuestionsRepository learnQuestionsRepository, TopicsRepository topicsRepository) {
+    public LearnQuestionsController(LearnQuestionsRepository learnQuestionsRepository, TopicsRepository topicsRepository, LearnAnswersRepository learnAnswersRepository) {
         this.learnQuestionsRepository = learnQuestionsRepository;
         this.topicsRepository = topicsRepository;
+        this.learnAnswersRepository = learnAnswersRepository;
     }
 
     @GetMapping
@@ -42,7 +43,7 @@ public class LearnQuestionsController {
     
     @GetMapping({"/{subjectId}/{userId}"})
     public LearnQuestions findBySubjectId(@PathVariable long subjectId,
-                                                 @PathVariable long userId){
+                                          @PathVariable long userId){
         List <Long> topicIds = topicsRepository.findBySubjectId(subjectId)
                 .stream()
                 .map( it -> it.getId())

@@ -45,7 +45,8 @@ public class UsersController {
 
             if (user.getPw().equals(password)) {
                 res.put("auth", true);
-                res.put("user_type", user.getUserType());
+                res.put("userType", user.getUserType());
+                res.put("userId", user.getId());
             }
             else {
                 res.put("auth", false);
